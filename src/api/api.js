@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
-const BASE_URL = 'https://666d2bf37a3738f7cacbadeb.mockapi.io/api/v1';
+const BASE_URL = 'http://localhost:5000';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
