@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
-const BASE_URL = 'https://666d2bf37a3738f7cacbadeb.mockapi.io/api/v1';
+const BASE_URL = 'http://localhost:5000';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -17,15 +18,12 @@ const apiRequest = async (method, endpoint, data) => {
       data,
     });
 
-    const responseData = response.data;
-
-    if (responseData.status !== 'success') {
-      throw new Error(responseData.message);
-    }
-
-    return responseData;
+    return response.data;
   } catch (error) {
-    throw new Error(error.message || 'Something went wrong');
+    console.error('API request error:', error.response || error.message);
+    throw new Error(
+      error.response?.data?.message || error.message || 'Something went wrong'
+    );
   }
 };
 
